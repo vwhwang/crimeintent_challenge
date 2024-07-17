@@ -1,5 +1,6 @@
 package com.example.crimeintent
 
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -7,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.crimeintent.databinding.ListItemCrimeBinding
 import com.example.crimeintent.databinding.ListItemCrimePoliceBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class CrimeHolder(
     private val binding: ListItemCrimeBinding
@@ -30,7 +33,10 @@ class CrimeRequirePoliceHolder(
 ) : ViewHolder(binding.root) {
     fun bind(crime: Crime) {
         binding.crimeTitle.text = crime.title
-        binding.crimeDate.text = crime.date.toString()
+        val simpleDateFormat = SimpleDateFormat("MMMM dd, yyyy")
+        val dateTime = simpleDateFormat.format(crime.date)
+        binding.crimeDate.text = dateTime
+
         binding.contactButton.text = "contact police"
     }
 }
